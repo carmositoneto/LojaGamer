@@ -9,30 +9,32 @@ import java.util.ArrayList;
 public class ProdutosDAO {
 
 	protected Connection connection = null;
-	public ArrayList<Usuario> listarProdutos(){
+	
+	
+	public ArrayList<Produto> listarProdutos(){
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
 			if (connection != null) {
-				statement = connection.prepareStatement("select * from usuarios;");
+				statement = connection.prepareStatement("select * from td_produtos;");
 				statement.execute();
 				resultSet = statement.getResultSet();
-				ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>();
+				ArrayList<Produto> listaDeProdutos = new ArrayList<Produto>();
 				if (resultSet != null) {
 					while (resultSet.next()) {
 						int id = resultSet.getInt("id");
-						String login = resultSet.getString("login");
-						String senha = resultSet.getString("senha");
 						String nome = resultSet.getString("nome");
-						String email = resultSet.getString("email");
-						listUsuarios.add(new Usuario(id, login, senha, nome, email));
+						String desc = resultSet.getString("descricao");
+						listaDeProdutos.add(new Produto(id, nome, desc));
 					}
 				}
-				return listUsuarios;
+				return listaDeProdutos;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	
 }

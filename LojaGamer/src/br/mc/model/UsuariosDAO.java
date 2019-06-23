@@ -27,7 +27,7 @@ public class UsuariosDAO {
 						int id = resultSet.getInt("id");
 						String nome = resultSet.getString("nome");
 						String cpf = resultSet.getString("cpf");
-						return new Usuario(id, email, senha, nome, email);
+						return new Usuario(id, email, senha, nome, email, cpf);
 					}
 				}
 			}
@@ -53,8 +53,9 @@ public class UsuariosDAO {
 						String senha = resultSet.getString("senha");
 						String nome = resultSet.getString("nome");
 						String email = resultSet.getString("email");
+						String cpf = resultSet.getString("cpf");
 						//
-						usuario = new Usuario(id, login, senha, nome, email);
+						usuario = new Usuario(id, login, senha, nome, email, cpf);
 						usuario.setFoto(resultSet.getBytes("foto"));
 						usuario.setFotoType(resultSet.getString("fotoType"));
 					}
@@ -82,7 +83,8 @@ public class UsuariosDAO {
 						String senha = resultSet.getString("senha");
 						String nome = resultSet.getString("nome");
 						String email = resultSet.getString("email");
-						listUsuarios.add(new Usuario(id, login, senha, nome, email));
+						String cpf = resultSet.getString("cpf");
+						listUsuarios.add(new Usuario(id, login, senha, nome, email, cpf));
 					}
 				}
 				return listUsuarios;
